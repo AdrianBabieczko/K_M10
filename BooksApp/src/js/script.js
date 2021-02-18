@@ -78,7 +78,19 @@
 
           const dataId = book.getAttribute('data-id');
 
-          thisApp.favoriteBooks.push(dataId);
+          if(!thisApp.favoriteBooks.includes(dataId))
+          {
+            thisApp.favoriteBooks.push(dataId);
+          }
+          else
+          {
+            const index = thisApp.favoriteBooks.indexOf(dataId);
+
+            if(index > -1)
+            {
+              thisApp.favoriteBooks.splice(index,1);
+            }
+          }
         });
       }
     },
