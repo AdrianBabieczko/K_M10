@@ -21,6 +21,7 @@
     book:
     {
       favorite: 'favorite',
+      bookImage: 'book__image',
     },
   };
 
@@ -66,17 +67,17 @@
 
       const booksList = document.querySelector(select.containerOf.booksList);
 
-      const booksImages = booksList.querySelectorAll(select.containerOf.bookImage);
-
-      for(const book of booksImages)
+      booksList.addEventListener('dblclick', function(event)
       {
-        book.addEventListener('dblclick', function(event)
+        event.preventDefault();
+
+        const target = event.target.offsetParent;
+
+        if(target.classList.contains(classNames.book.bookImage))
         {
-          event.preventDefault();
+          target.classList.toggle(classNames.book.favorite);
 
-          book.classList.toggle(classNames.book.favorite);
-
-          const dataId = book.getAttribute('data-id');
+          const dataId = target.getAttribute('data-id');
 
           if(!thisApp.favoriteBooks.includes(dataId))
           {
@@ -91,8 +92,8 @@
               thisApp.favoriteBooks.splice(index,1);
             }
           }
-        });
-      }
+        }
+      });
     },
   };
 
