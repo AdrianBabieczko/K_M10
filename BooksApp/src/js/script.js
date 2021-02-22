@@ -196,4 +196,4 @@ class BooksList
   }
 }
 
-const app = new BooksList();
+window.app = new BooksList();
